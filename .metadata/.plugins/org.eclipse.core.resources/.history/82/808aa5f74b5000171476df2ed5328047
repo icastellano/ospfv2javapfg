@@ -1,0 +1,19 @@
+
+
+public class TransitionInterfaz {
+ 
+	private final State sourceState;
+ 
+	private final State targetState;
+ 
+ 
+	public Transition(State sourceState, State targetState) {
+		this.sourceState = sourceState;
+		this.targetState = targetState;
+	}
+ 
+	public State nextState(StateEvent event) {
+		return targetState;
+	}
+	
+}

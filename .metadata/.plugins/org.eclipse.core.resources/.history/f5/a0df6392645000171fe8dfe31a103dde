@@ -1,0 +1,20 @@
+package Interfaz;
+
+public class EstadoInterfazWaiting extends EstadoInterfaz{
+
+	public EstadoInterfazWaiting(){
+		
+	}
+	
+	public void mostrar(){
+		System.out.println("Estado Waiting");
+	}
+	
+	public void doEntry(){
+		//Iniciar WaitTimer
+		//Si red es no-breadcast, enviar Start a vecinos capaces de ser DR
+	}
+	
+	public void doExit(){
+	}
+}

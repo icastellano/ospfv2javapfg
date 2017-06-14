@@ -1,0 +1,22 @@
+package Interfaz;
+
+import java.util.*;
+
+public abstract class EstadoInterfaz {
+
+	protected final Map<String, TransicionInterfaz> transitionByEvent = new HashMap<String, TransicionInterfaz>();
+	 
+	public EstadoInterfaz fire(StateEvent event) {
+		
+		final TransicionInterfaz transition = transitionByEvent.get(event.getClass().getName());
+		
+		if (transition == null) {
+			return this;
+		}
+	 
+		return transition.nextState(event);
+	}
+	
+	
+	public abstract void mostrar();
+}

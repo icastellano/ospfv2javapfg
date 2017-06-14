@@ -1,0 +1,5 @@
+package Interfaz.Eventos;
+
+public class EventoInterfazUnloopInd extends EventoInterfaz{
+
+}

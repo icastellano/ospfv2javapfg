@@ -1,0 +1,51 @@
+import Interfaz.*;
+
+
+
+public class mainEjemploInterfaz {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Inicializamos interfaz y estados");
+		//Inicializar estados
+		EstadoInterfazLoopback loopback = new EstadoInterfazLoopback();
+		EstadoInterfazDown down = new EstadoInterfazDown();
+		EstadoInterfazPTP ptp = new EstadoInterfazPTP();
+		EstadoInterfazWaiting waiting = new EstadoInterfazWaiting();
+		EstadoInterfazDr dr = new EstadoInterfazDr();
+		EstadoInterfazDrOther drother = new EstadoInterfazDrOther();
+		EstadoInterfazBackup backup = new EstadoInterfazBackup();
+		
+		//Set state
+		loopback.setStates(down);
+		down.setStates(ptp, waiting, drother,loopback);
+		ptp.setStates(loopback,down);
+		waiting.setStates(dr, drother, backup, down, loopback);
+		dr.setStates(dr, drother, backup, down, loopback);
+		drother.setStates(dr, drother, backup, down, loopback);
+		backup.setStates(dr, drother, backup, down, loopback);
+		
+		//PostConstruct
+		loopback.postConstruct();
+		down.postConstruct();
+		ptp.postConstruct();
+		waiting.postConstruct();
+		dr.postConstruct();
+		drother.postConstruct();
+		backup.postConstruct();
+		
+		
+	
+		Interfaz interfaz = new Interfaz(loopback);
+		System.out.println("Creada interfaz");
+		interfaz.mostrar();
+		
+		System.out.println("Inicializamos estados");
+		
+		
+
+		System.out.println("Lanzamos Evento UnloopInd para pasar a down");
+		//interfaz.getEstado().fire
+	}
+
+}

@@ -1,0 +1,21 @@
+package Interfaz;
+
+public class EstadoInterfazLoopback extends EstadoInterfaz{
+
+	private EstadoInterfaz down;
+	
+	public EstadoInterfazLoopback(){
+		
+	}
+	
+	
+	void postConstruct() {
+		transitionByEvent.put(EventoInterfazUnloopInd.class.getName(), new TransicionInterfaz(this, down));
+
+	}
+	
+	
+	public void mostrar(){
+		System.out.println("Estado Loopback");
+	}
+}
